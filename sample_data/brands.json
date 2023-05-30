@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Quintiles",
+        "imagePath": "/img/brand-1.png"
+    },
+    {
+        "name": "IndiaCapital",
+        "imagePath": "/img/brand-2.png"
+    },
+    {
+        "name": "PaperlinX",
+        "imagePath": "/img/brand-3.png"
+    },
+    {
+        "name": "InfraRed",
+        "imagePath": "/img/brand-4.png"
+    },
+    {
+        "name": "Erlang",
+        "imagePath": "/img/brand-5.png"
+    },
+    {
+        "name": "Sport England",
+        "imagePath": "/img/brand-6.png"
+    }
+]
