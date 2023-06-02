@@ -1,17 +1,6 @@
 {
-  "user_env_variable": "POSTGRESQL_URL",
   "development": {
-    "username": "eshopdb",
-    "password": "mpcKAPlWiNDFvwn99BkhlciZUqNsBhXp",
-    "database": "eshopdb_4occ",
-    "host": "dpg-chso2lhmbg57s5u6i3dg-a.singapore-postgres.render.com",
-    "dialect": "postgres",
-    "dialectOptions": {
-      "ssl": {
-        "require": true,
-        "rejectUnauthorized": false
-      }
-    },
+    "use_env_variable": "POSTGRESQL_URL",
     "logging": false
   },
   "test": {
@@ -22,10 +11,7 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "eshopdb",
-    "password": "mpcKAPlWiNDFvwn99BkhlciZUqNsBhXp",
-    "database": "eshopdb_4occ",
-    "host": "dpg-chso2lhmbg57s5u6i3dg-a.singapore-postgres.render.com",
+    "use_env_variable": "POSTGRESQL_URL",
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {
@@ -33,6 +19,6 @@
         "rejectUnauthorized": false
       }
     },
-    "logging": false
+    "logging": true
   }
 }
