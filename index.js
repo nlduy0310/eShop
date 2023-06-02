@@ -1,6 +1,8 @@
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 const eHbs = require('express-handlebars');
 const a = require('sequelize');
 const { createStarsList } = require('./controllers/handlebarsHelper');
@@ -9,11 +11,7 @@ const session = require('express-session')
 const redisStore = require('connect-redis').default;
 const { createClient } = require('redis');
 const redisClient = createClient({
-    // external url (local)
-    //url: 'rediss://red-chsocm64dad9mubtlvag:f6kPoZKGkIyb0B1GXSAGcPpFHQ6TYg4g@singapore-redis.render.com:6379'
-
-    // internal url (deploy)
-    url: 'redis://red-chsocm64dad9mubtlvag:6379'
+    url: process.env.REDIS_URL
 })
 redisClient.connect().catch(console.error);
 
@@ -40,7 +38,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // session
 app.use(session({
-    secret: 'S3cret',
+    secret: process.env.SESSION_SECRET,
     store: new redisStore({ client: redisClient }),
     resave: false,
     saveUninitialized: false,
