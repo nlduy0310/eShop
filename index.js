@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = process.env.port || 5000;
+const port = process.env.port || 3000;
 const eHbs = require('express-handlebars');
 const a = require('sequelize');
 const { createStarsList } = require('./controllers/handlebarsHelper');

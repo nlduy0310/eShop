@@ -1,10 +1,16 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "postgres",
-    "database": "eshopDB",
-    "host": "127.0.0.1",
+    "username": "eshopdb",
+    "password": "mpcKAPlWiNDFvwn99BkhlciZUqNsBhXp",
+    "database": "eshopdb_4occ",
+    "host": "dpg-chso2lhmbg57s5u6i3dg-a.singapore-postgres.render.com",
     "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    },
     "logging": false
   },
   "test": {
@@ -15,16 +21,17 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "username",
-    "password": "password",
-    "database": "databasee",
-    "host": "host",
+    "username": "eshopdb",
+    "password": "mpcKAPlWiNDFvwn99BkhlciZUqNsBhXp",
+    "database": "eshopdb_4occ",
+    "host": "dpg-chso2lhmbg57s5u6i3dg-a.singapore-postgres.render.com",
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {
         "require": true,
         "rejectUnauthorized": false
       }
-    }
+    },
+    "logging": false
   }
 }
