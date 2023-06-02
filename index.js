@@ -6,6 +6,16 @@ const a = require('sequelize');
 const { createStarsList } = require('./controllers/handlebarsHelper');
 const { createPagination } = require('express-handlebars-paginate');
 const session = require('express-session')
+const redisStore = require('connect-redis').default;
+const { createClient } = require('redis');
+const redisClient = createClient({
+    // external url (local)
+    //url: 'rediss://red-chsocm64dad9mubtlvag:f6kPoZKGkIyb0B1GXSAGcPpFHQ6TYg4g@singapore-redis.render.com:6379'
+
+    // internal url (deploy)
+    url: 'redis://red-chsocm64dad9mubtlvag:6379'
+})
+redisClient.connect().catch(console.error);
 
 app.use(express.static(__dirname + '/public'));
 
@@ -31,6 +41,7 @@ app.use(express.urlencoded({ extended: false }));
 // session
 app.use(session({
     secret: 'S3cret',
+    store: new redisStore({ client: redisClient }),
     resave: false,
     saveUninitialized: false,
     cookie: {
