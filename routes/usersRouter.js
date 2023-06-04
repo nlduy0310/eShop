@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/usersController');
 const { body, validationResult } = require('express-validator');
-
+const authController = require('../controllers/authController');
+router.use(authController.isLoggedIn);
 router.get('/checkout', controller.checkout);
 router.post('/placeorders',
     body('firstName').notEmpty().withMessage('First name is required!'),
@@ -22,5 +23,8 @@ router.post('/placeorders',
         next();
     },
     controller.placeorders);
+router.get('/my-account', (req, res) => {
+    res.render('my-account');
+})
 
 module.exports = router;

@@ -14,9 +14,13 @@ const redisClient = createClient({
     url: process.env.REDIS_URL
 })
 redisClient.connect().catch(console.error);
+const passport = require('./controllers/passport');
+const flash = require('connect-flash');
 
+// cau hinh thu muc static
 app.use(express.static(__dirname + '/public'));
 
+// cau hinh view engine
 app.engine('hbs', eHbs.engine({
     layoutsDir: __dirname + '/views/layouts',
     partialsDir: __dirname + '/views/partials',
@@ -48,18 +52,26 @@ app.use(session({
     }
 }));
 
+// cau hinh su dung passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// cau hinh su dung connect-flash
+app.use(flash());
+
 // middleware khoi tao gio hang
 app.use((req, res, next) => {
     let Cart = require('./controllers/cart');
     req.session.cart = new Cart(req.session.cart ? req.session.cart : {});
     res.locals.quantity = req.session.cart.quantity;
-
+    res.locals.isLoggedIn = req.isAuthenticated();
     next();
 })
 
 // routes
 app.use('/', require('./routes/indexRouter'));
 app.use('/products', require('./routes/productsRouter'));
+app.use('/users', require('./routes/authRouter'));
 app.use('/users', require('./routes/usersRouter'));
 app.use((req, res, next) => {
     res.render('error', { message: 'File not Found' });
@@ -69,6 +81,7 @@ app.use((error, req, res, next) => {
     res.render('error', { message: 'Internal Server Error' });
 })
 
+// start app
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
