@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "sync-tables": "node scripts/syncTables.js",
+    "sync-tables": "node scripts/syncModels.js",
     "db-seed-all": "npx sequelize-cli db:seed:all",
     "db-unseed-all": "npx sequelize-cli db:seed:undo:all"
   },
